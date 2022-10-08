@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './styles.scss';
 import { DataViewProps, DataType } from './types';
 import Pagination from '../pagination';
 
 const DataView = ({ data }: DataViewProps) => {
-  const pageSize = 10;
+  const pageSize = 5;
   const [page, setPage] = useState(1);
   const [dataGroup, setDataGroup] = useState([]);
 
@@ -23,15 +23,17 @@ const DataView = ({ data }: DataViewProps) => {
     <div>
       <div className="table">
         <div className="row titles">
-          <span>Id</span>
-          <span>Title</span>
+          <span>Name</span>
+          <span>Thumbnail</span>
         </div>
 
         {!!dataGroup?.length
           ? dataGroup[page - 1].map((item: DataType, i: number) => (
               <div className="row">
-                <span>{item.id}</span>
-                <span>{item.title}</span>
+                <span>{item.name}</span>
+                <span>
+                  <img src={item.url} alt={item.url} />
+                </span>
               </div>
             ))
           : 'No Results'}
@@ -39,11 +41,14 @@ const DataView = ({ data }: DataViewProps) => {
 
       <Pagination
         currentPage={page}
-        threshold={3}
+        threshold={2}
         totalPages={dataGroup?.length}
-        onPageChange={(page: number) => {
-          setPage(page);
-        }}
+        onPageChange={useCallback(
+          (page: number) => {
+            setPage(page);
+          },
+          [page]
+        )}
       />
     </div>
   );

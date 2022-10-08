@@ -27,7 +27,7 @@ const Pagination = ({
 
   return (
     <div className="page-list">
-      <div onClick={() => onPageChange(1)}>First</div>
+      {currentPage !== 1 && <div onClick={() => onPageChange(1)}>First</div>}
       {currentPage - threshold > 1 ? '...' : ''}
       {!!(currentPage - 1 > 0) && (
         <div onClick={() => onPageChange(currentPage - 1)}>←</div>
@@ -45,7 +45,9 @@ const Pagination = ({
         <div onClick={() => onPageChange(currentPage + 1)}>→</div>
       )}
       {currentPage + threshold < totalPages ? '...' : ''}
-      <div onClick={() => onPageChange(totalPages)}>Last</div>
+      {currentPage !== totalPages && (
+        <div onClick={() => onPageChange(totalPages)}>Last</div>
+      )}
     </div>
   );
 };
