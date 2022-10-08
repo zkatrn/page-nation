@@ -1,0 +1,19 @@
+.page-list {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  div {
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    &.active {
+      font-weight: bold;
+      color: palevioletred;
+      text-decoration: underline;
+    }
+  }
+}

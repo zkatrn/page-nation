@@ -1,0 +1,20 @@
+.table {
+  text-align: left;
+  height: 500px;
+  .row {
+    display: flex;
+    border-bottom: solid 1px #eeeeee;
+    padding: 10px 0;
+
+    &.titles {
+      border-color: #333333;
+      font-weight: bold;
+    }
+
+    span {
+      &:first-of-type {
+        flex: 0 0 50px;
+      }
+    }
+  }
+}
